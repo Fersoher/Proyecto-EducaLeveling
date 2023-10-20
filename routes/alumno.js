@@ -1,3 +1,4 @@
+const router = require('express').Router()
 const { getAllAlumnos, getOneAlumno, createAlumno, updateAlumno, deleteAlumno, getOwnTests, getOwnAsignatura, getOwnCursos } = require('../controllers/alumno')
 
 router.get('/alumno', getAllAlumnos)
