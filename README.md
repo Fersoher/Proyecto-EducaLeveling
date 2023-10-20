@@ -1,129 +1,197 @@
 # Proyecto-EducaLeveling
 
-### Introduction
-Project Support is an open source platform that enable users share causes they're passionate about and actively involved with with the hopes of connecting with other users equally interested in working with them on the given cause.
+### Introducción
+We created a project guided towards the creation of a database aimed at helping educational centers with respect to planning the school year and student learning, facilitating access to lessons and activities.
+
 ### Project Support Features
-* Users can signup and login to their accounts
-* Public (non-authenticated) users can access all causes on the platform
-* Authenticated users can access all causes as well as create a new cause, edit their created cause and also delete what they've created.
+* Users can register and log in.
+* The platform differentiates between users when it comes to permissions.
+
 ### Installation Guide
 * Clone this repository [here](https://github.com/blackdevelopa/ProjectSupport.git).
 * The develop branch is the most stable branch at any given time, ensure you're working from it.
 * Run npm install to install all dependencies
 * You can either work with the default mLab database or use your locally installed MongoDB. Do configure to your choice in the application entry file.
 * Create an .env file in your project root folder and add your variables. See .env.sample for assistance.
+
 ### Usage
 * Run npm start:dev to start the application.
 * Connect to the API using Postman on port 7066.
-### serpica
-#### usuarios
+
+### EducaLeveling
+
+
+#### Profesores
 | HTTP Verbs | Endpoints | Action |
 | --- | --- | --- |
-| POST | /serpica/usuarios | To create a new |
-| GET | /serpica/usuarios | muestra todos los campos|
-| GET | /serpica/usuarios/:Id | muestra solo un campo id  |
-| PATCH | /serpica/usuarios/:Id | actualiza el campo id|
-| DELETE | /serpica/usuarios/:Id | Elimina un campo id |
+| POST | /educaleveling/profesores | To create a new |
+| GET | /educaleveling/profesores | muestra todos los campos|
+| GET | /educaleveling/profesores/:Id | muestra solo un campo id  |
+| PUT | /educaleveling/profesores/:Id | actualiza el campo id|
+| DELETE | /educaleveling/profesores/:Id | Elimina un campo id |
+| GET | /educaleveling/profesores/profile | muestra solo un campo id  |
 
 
-#### direccion
+#### Asignaturas
 | HTTP Verbs | Endpoints | Action |
 | --- | --- | --- |
-| POST | /serpica/direccion | To create a new |
-| GET | /serpica/direccion | muestra todos los campos|
-| GET | /serpica/direccion/:Id | muestra solo un campo id  |
-| PATCH | /serpica/direccion/:Id | actualiza el campo id|
-| DELETE | /serpica/direccion/:Id | Elimina un campo id |
+| POST | /educaleveling/asignaturas | To create a new |
+| GET | /educaleveling/asignaturas | muestra todos los campos|
+| GET | /educaleveling/asignaturas/:Id | muestra solo un campo id  |
+| PUT | /educaleveling/asignaturas/:Id | actualiza el campo id|
+| DELETE | /educaleveling/asignaturas/:Id | Elimina un campo id |
 
 
-#### telefono
+#### Curso
 | HTTP Verbs | Endpoints | Action |
 | --- | --- | --- |
-| POST | /serpica/telefono | To create a new |
-| GET | /serpica/telefono  | muestra todos los campos|
-| GET | /serpica/telefono /:Id | muestra solo un campo id  |
-| PATCH | /serpica/telefono /:Id | actualiza el campo id|
-| DELETE | /serpica/telefono /:Id | Elimina un campo id |
+| POST | /educaleveling/curso | To create a new |
+| GET | /educaleveling/curso  | muestra todos los campos|
+| GET | /educaleveling/curso /:Id | muestra solo un campo id  |
+| PUT | /educaleveling/curso /:Id | actualiza el campo id|
+| DELETE | /educaleveling/curso /:Id | Elimina un campo id |
 
 
-#### email
+#### Alumnos
 | HTTP Verbs | Endpoints | Action |
 | --- | --- | --- |
-| POST | /serpica/email | To create a new |
-| GET | /serpica/email  | muestra todos los campos|
-| GET | /serpica/email /:Id | muestra solo un campo id  |
-| PATCH | /serpica/email /:Id | actualiza el campo id|
-| DELETE | /serpica/email /:Id | Elimina un campo id |
+| POST | /educaleveling/alumnos | To create a new |
+| GET | /educaleveling/alumnos  | muestra todos los campos|
+| GET | /educaleveling/alumnos /:Id | muestra solo un campo id  |
+| PUT | /educaleveling/alumnos /:Id | actualiza el campo id|
+| DELETE | /educaleveling/alumnos /:Id | Elimina un campo id |
 
 
-#### motor corredera
+#### Equipamiento
 | HTTP Verbs | Endpoints | Action |
 | --- | --- | --- |
-| POST | /serpica/corredera | To create a new  |
-| GET | /serpica/corredera | muestra todos los campos |
-| GET | /serpica/corredera/:Id | muestra solo un campo id |
-| PATCH | /serpica/corredera/:Id | actualiza el campo id|
-| DELETE | /serpica/corredera/:Id | Elimina un campo id  |
+| POST | /educaleveling/equipamiento | To create a new  |
+| GET | /educaleveling/equipamiento | muestra todos los campos |
+| GET | /educaleveling/equipamiento/:Id | muestra solo un campo id |
+| PUT | /educaleveling/equipamiento/:Id | actualiza el campo id|
+| DELETE | /educaleveling/equipamiento/:Id | Elimina un campo id  |
 
 
-#### motor seccional 
+#### ActividadesYExamenes 
 | HTTP Verbs | Endpoints | Action |
 | --- | --- | --- |
-| POST | /serpica/seccional | To create a new  |
-| GET | /serpica/seccional | muestra todos los campos  |
-| GET | /serpica/seccional/:Id | muestra solo un campo id  |
-| PATCH | /serpica/seccional/:Id | actualiza el campo id|
-| DELETE | /serpica/seccional/:Id | Elimina un campo id |
+| POST | /educaleveling/test | To create a new  |
+| GET | /educaleveling/test | muestra todos los campos  |
+| GET | /educaleveling/test/:Id | muestra solo un campo id  |
+| PUT | /educaleveling/test/:Id | actualiza el campo id|
+| DELETE | /educaleveling/test/:Id | Elimina un campo id |
+
+### Team:
+Guaci, Marcos and Vero.
+
+### Project Idea:
+This project consists of creating an API that facilitates the management of medical appointments for a veterinary clinic. The clinic will control the registration of owners and pets, appointments, treatment follow-up and the assignment of veterinarians. Owners will be able to request appointments for their pets, as well as consult their record at any time and the information of the veterinarians and treatments available at the clinic.
+
+Roles: There will be 3 main roles:
+- Admin: This role has full permissions. It can view, create, update and delete information from all tables.
+- Personnel (clinic staff): This role can see all the information. Create, update and delete pets, owners, contact details, appointments. You can view vet and treatment information, but you can NOT create, update, or delete it.
+- User (pet owner): This role can view all vet and treatment information. But you can only see your own appointments, pets and contact information (not other users). Likewise, you can only create, update and delete your own data. You have access to the information of all available appointments and the possibility to update the "status" field of the appointments when you select one to book for your pet, so that its status changes to "not available".
+
+### Tables:
+<!--  ![image](https://github.com/VeronicaRamirezMoreno/Project-2-API-Rest/assets/122170615/90340a1a-4d1a-4309-84b2-433e8c73ae00)
+ -->
+
+### Relationships between tables:
+
+Ref: Empleados.id < AsignaturaProfesor.profesores_id
+Ref: Asignaturas.id < AsignaturaProfesor.asignaturas_id
+
+Ref: Asignaturas.id < AsignaturaCurso.asignaturas_id
+Ref: Curso.id < AsignaturaCurso.curso_id
+Ref: Alumnos.id > Curso.alumno_id
 
 
-#### motor batiente
-| HTTP Verbs | Endpoints | Action |
-| --- | --- | --- |
-| POST | /serpica/batiente | To create a new |
-| GET | /serpica/batiente | muestra todos los campos|
-| GET | /serpica/batiente/:Id | muestra solo un campo id  |
-| PATCH | /serpica/batiente/:Id | actualiza el campo id|
-| DELETE | /serpica/batiente/:Id | Elimina un campo id |
+Ref: Equipamiento.alumnos_id - Alumnos.id
+Ref: ActividadesYExamenes.alumno_id > Alumnos.id
+Ref: ActividadesYExamenes.profesor_id > Empleados.id
+Ref: Asignaturas.asignatura < ActividadesYExamenes.asignatura
 
 
-#### accesorios mandos
-| HTTP Verbs | Endpoints | Action |
-| --- | --- | --- |
-| POST | /serpica/mandos | To create a new |
-| GET | /serpica/mandos | muestra todos los campos|
-| GET | /serpica/mandos/:Id | muestra solo un campo id  |
-| PATCH | /serpica/mandos/:Id | actualiza el campo id|
-| DELETE | /serpica/mandos/:Id | Elimina un campo id |
+
+## Endpoints
+### User Signup/Login
+
+METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
+-------|------------------|-------|------|--------------------|-------------------------------------------------|--------------------
+POST   | /auth/signup     | -     | admin | User Signup              | `first_name`, `last_name`, `email`, `password`, `DNI`  | { token: `token` }
+POST   | /auth/login      | -     | admin | User Login               | `email`, `password`                             | { token: `token` }
 
 
-#### accesorios cremallera
-| HTTP Verbs | Endpoints | Action |
-| --- | --- | --- |
-| POST | /serpica/cremallera | To create a new |
-| GET | /serpica/cremallera | muestra todos los campos|
-| GET | /serpica/cremallera/:Id | muestra solo un campo id  |
-| PATCH | /serpica/cremallera/:Id | actualiza el campo id|
-| DELETE | /serpica/cremallera/:Id | Elimina un campo id |
+### Profesor Endpoints 
+
+METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
+-------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
+GET    | /profesor          | YES   | admin | Get All profesors       |  `query params`                                 | [{profesor}]
+GET    | /profesor/:profesorId    | YES   | admin | Get One profesor       |                                 | {profesor}
+GET    | /profesor/profile    | YES   | profesor | Get Own Profile          |                                                 |  {profesor}
+POST   | /profesor     | YES   | admin |  Create one profesor     | `first_name`, `last_name`, `email`, `password`, `DNI` ,`role` | {profesor}
+PUT    | /profesor/profile   | YES   | profesor |  Update own profesor     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'profesor updated'}
+DELETE | /profesor/:profesorId    | YES   | admin | Delete own profile       |                                                    | { message: 'Profile deleted' }
+
+### Alumno Endpoints 
+
+METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
+-------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
+GET    | /alumno          | YES   | admin | Get All alumnos       |  `query params`                                 | [{alumno}]
+GET    | /alumno/:alumnoId    | YES   | profesor | Get One alumno       |                                 | {alumno}
+GET    | /alumno/profile    | YES   | alumno | Get Own Profile          |                                                 |  {alumno}
+POST   | /alumno     | YES   | admin |  Create one alumno     | `first_name`, `last_name`, `email`, `password`, `DNI` ,`role` | {alumno}
+PUT    | /alumno/profile   | YES   | alumno |  Update own alumno     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'alumno updated'}
+DELETE | /alumno/:alumnoId    | YES   | admin | Delete own profile       |                                                    | { message: 'Profile deleted' }
+
+### Asignaturas Endpoints
+
+METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
+-------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
+GET    | /asignatura                | YES   | admin     | Get All asignaturas       |  `query params`                                 | [{asignatura}]
+GET    | /asignatura/:asignaturaId  | YES   | admin     | Get One asignatura        |                               | {asignatura}
+GET    | /asignatura/:profesorId    | YES   | profesor  | Get Own asignatura        |                               | {asignatura}
+POST   | /asignatura                | YES   | admin     |  Create one asignatura    | `membership_num`,`first_name`, `last_name`, `email`, `password`, `phone`, `specializaition`, `profile_picture`  | {asignatura}
+PUT    | /asignatura/:asignaturaId  | YES   | admin     |  Update one asignatura    | `membership_num`, `first_name`, `last_name`, `email`, `password`, `phone`, `specializaition`, `profile_picture`  | {message: 'asignatura updated'}
+DELETE | /asignatura/:asignaturaId  | YES   | admin     | Delete one asignatura     |                                                   | {message: 'asignatura deleted'}
 
 
-#### accesorios sensores
-| HTTP Verbs | Endpoints | Action |
-| --- | --- | --- |
-| POST | /serpica/sensores | To create a new |
-| GET | /serpica/sensores | muestra todos los campos|
-| GET | /serpica/sensores/:Id | muestra solo un campo id  |
-| PATCH | /serpica/sensores/:Id | actualiza el campo id|
-| DELETE | /serpica/sensores/:Id | Elimina un campo id |
+### Cursos Endpoints
+
+METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
+-------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
+GET    | /curso                | YES   | admin     | Get All cursos       |  `query params`                                 | [{curso}]
+GET    | /curso/:cursoId       | YES   | admin     | Get One curso        |                               | {curso}
+GET    | /curso/:profesorId    | YES   | profesor  | Get Own curso        |                               | {curso}
+POST   | /curso                | YES   | admin     |  Create one curso    | `membership_num`,`first_name`, `last_name`, `email`, `password`, `phone`, `specializaition`, `profile_picture`  | {curso}
+PUT    | /curso/:cursoId       | YES   | admin     |  Update one curso    | `membership_num`, `first_name`, `last_name`, `email`, `password`, `phone`, `specializaition`, `profile_picture`  | {message: 'curso updated'}
+DELETE | /curso/:cursoId       | YES   | admin     | Delete one curso     |                                                   | {message: 'curso deleted'}
 
 
-#### manuales tecnicos
-| HTTP Verbs | Endpoints | Action |
-| --- | --- | --- |
-| POST | /serpica/manuales | To create a new |
-| GET | /serpica/manuales | muestra todos los campos|
-| GET | /serpica/manuales/:Id | muestra solo un campo id  |
-| PATCH | /serpica/manuales/:Id | actualiza el campo id|
-| DELETE | /serpica/manuales/:Id | Elimina un campo id |
+### ActividadesYExamenes Endpoints 
+
+METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
+-------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
+GET    | /test            | YES   | profesor | Get All tests        |  `query params`                                 | [{test}]
+GET    | /test/:testId    | YES   | profesor | Get One tests        |                                   | {test}
+GET    | /test/profile    | YES   | alumno   | Get own tests        |                                                 |  {test}
+GET    | /test/available  | YES   | alumno   | Get available tests  |                                                |  {test}
+POST   | /test            | YES   | profesor | Create one test      | `test_date`, `test_time`, `description`, `duration`, `status` | {test}
+PUT    | /test/available  | YES   | alumno   | Update own test      |   `status`   | {message: 'test updated'}
+PUT    | /test/:testId    | YES   | profesor | Update one test      | `test_date`, `test_time`, `description`, `duration`, `status`| {message: 'test updated'}
+DELETE | /test/profile    | YES   | alumno   | Delete own test      |                                               | { message: 'test deleted' }
+DELETE | /test/:testId    | YES   | profesor | Delete one test      |                                            | {message: 'test deleted'}
+
+
+### Treatments Endpoints
+
+METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
+-------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
+GET    | /treatment            | YES   | user | Get All Treatments       |  `query params`                                 | [{treatment}]
+GET    | /treatment/:treatmentId      | YES   | user | Get One Treatment       |                               | [{treatment}]
+POST   | /treatment            | YES   | admin |  Create one Treatment        | `name`,`description`, `price` | {treatment}
+PUT   |  /treatment/:treatmentId     | YES   | admin |  Update one Treatment        | `name`,`description`, `price` | {message: 'Treatment updated'}
+DELETE | /treatment/:treatmentId     | YES   | admin | Delete one Treatment         |                                                   | {message: 'Treatment deleted'}
 
 ### Technologies Used
 * [NodeJS](https://nodejs.org/) This is a cross-platform runtime environment built on Chrome's V8 JavaScript engine used in running JavaScript codes on the server. It allows for installation and managing of dependencies and communication with databases.
