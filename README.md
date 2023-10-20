@@ -129,6 +129,8 @@ METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAM
 GET    | /profesor          | YES   | admin | Get All profesors       |  `query params`                                 | [{profesor}]
 GET    | /profesor/:profesorId    | YES   | admin | Get One profesor       |                                 | {profesor}
 GET    | /profesor/profile    | YES   | profesor | Get Own Profile          |                                                 |  {profesor}
+GET    | /profesor/asignatura   | YES   | profesor  | Get Own asignatura        |                               | {asignatura}
+GET    | /profesor/curso   | YES   | profesor  | Get Own curso        |                               | {curso}
 POST   | /profesor     | YES   | admin |  Create one profesor     | `first_name`, `last_name`, `email`, `password`, `DNI` ,`role` | {profesor}
 PUT    | /profesor/profile   | YES   | profesor |  Update own profesor     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'profesor updated'}
 DELETE | /profesor/:profesorId    | YES   | admin | Delete own profile       |                                                    | { message: 'Profile deleted' }
@@ -140,6 +142,10 @@ METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAM
 GET    | /alumno          | YES   | admin | Get All alumnos       |  `query params`                                 | [{alumno}]
 GET    | /alumno/:alumnoId    | YES   | profesor | Get One alumno       |                                 | {alumno}
 GET    | /alumno/profile    | YES   | alumno | Get Own Profile          |                                                 |  {alumno}
+GET    | /alumno/test   | YES   | alumno   | Get own tests        |                                                 |  {test}
+GET    | /alumno/asignatura    | YES   | profesor  | Get Own asignatura        |                               | {asignatura}
+GET    | /alumno/curso    | YES   | profesor  | Get Own asignatura        |                               | {asignatura}
+GET    | /alumno/test | YES   | alumno   | Get available tests  |                                                |  {test}
 POST   | /alumno     | YES   | admin |  Create one alumno     | `first_name`, `last_name`, `email`, `password`, `DNI` ,`role` | {alumno}
 PUT    | /alumno/profile   | YES   | alumno |  Update own alumno     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'alumno updated'}
 DELETE | /alumno/:alumnoId    | YES   | admin | Delete own profile       |                                                    | { message: 'Profile deleted' }
@@ -150,7 +156,6 @@ METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAM
 -------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
 GET    | /asignatura                | YES   | admin     | Get All asignaturas       |  `query params`                                 | [{asignatura}]
 GET    | /asignatura/:asignaturaId  | YES   | admin     | Get One asignatura        |                               | {asignatura}
-GET    | /asignatura/:profesorId    | YES   | profesor  | Get Own asignatura        |                               | {asignatura}
 POST   | /asignatura                | YES   | admin     |  Create one asignatura    | `membership_num`,`first_name`, `last_name`, `email`, `password`, `phone`, `specializaition`, `profile_picture`  | {asignatura}
 PUT    | /asignatura/:asignaturaId  | YES   | admin     |  Update one asignatura    | `membership_num`, `first_name`, `last_name`, `email`, `password`, `phone`, `specializaition`, `profile_picture`  | {message: 'asignatura updated'}
 DELETE | /asignatura/:asignaturaId  | YES   | admin     | Delete one asignatura     |                                                   | {message: 'asignatura deleted'}
@@ -162,7 +167,6 @@ METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAM
 -------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
 GET    | /curso                | YES   | admin     | Get All cursos       |  `query params`                                 | [{curso}]
 GET    | /curso/:cursoId       | YES   | admin     | Get One curso        |                               | {curso}
-GET    | /curso/:profesorId    | YES   | profesor  | Get Own curso        |                               | {curso}
 POST   | /curso                | YES   | admin     |  Create one curso    | `membership_num`,`first_name`, `last_name`, `email`, `password`, `phone`, `specializaition`, `profile_picture`  | {curso}
 PUT    | /curso/:cursoId       | YES   | admin     |  Update one curso    | `membership_num`, `first_name`, `last_name`, `email`, `password`, `phone`, `specializaition`, `profile_picture`  | {message: 'curso updated'}
 DELETE | /curso/:cursoId       | YES   | admin     | Delete one curso     |                                                   | {message: 'curso deleted'}
@@ -174,24 +178,22 @@ METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAM
 -------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
 GET    | /test            | YES   | profesor | Get All tests        |  `query params`                                 | [{test}]
 GET    | /test/:testId    | YES   | profesor | Get One tests        |                                   | {test}
-GET    | /test/profile    | YES   | alumno   | Get own tests        |                                                 |  {test}
 GET    | /test/available  | YES   | alumno   | Get available tests  |                                                |  {test}
 POST   | /test            | YES   | profesor | Create one test      | `test_date`, `test_time`, `description`, `duration`, `status` | {test}
 PUT    | /test/available  | YES   | alumno   | Update own test      |   `status`   | {message: 'test updated'}
 PUT    | /test/:testId    | YES   | profesor | Update one test      | `test_date`, `test_time`, `description`, `duration`, `status`| {message: 'test updated'}
-DELETE | /test/profile    | YES   | alumno   | Delete own test      |                                               | { message: 'test deleted' }
 DELETE | /test/:testId    | YES   | profesor | Delete one test      |                                            | {message: 'test deleted'}
 
 
-### Treatments Endpoints
+### Equipamiento Endpoints
 
-METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
--------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
-GET    | /treatment            | YES   | user | Get All Treatments       |  `query params`                                 | [{treatment}]
-GET    | /treatment/:treatmentId      | YES   | user | Get One Treatment       |                               | [{treatment}]
-POST   | /treatment            | YES   | admin |  Create one Treatment        | `name`,`description`, `price` | {treatment}
-PUT   |  /treatment/:treatmentId     | YES   | admin |  Update one Treatment        | `name`,`description`, `price` | {message: 'Treatment updated'}
-DELETE | /treatment/:treatmentId     | YES   | admin | Delete one Treatment         |                                                   | {message: 'Treatment deleted'}
+METHOD | ENDPOINT                       | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
+-------|------------------              |-------|------|--------------------------|-------------------------------------------------|--------------------
+GET    | /equipamiento                  | YES   | alumno | Get All equipamiento       |  `query params`                                 | [{equipamiento}]
+GET    | /equipamiento/:equipamientoId  | YES   | profesor | Get One equipamiento       |                               | [{equipamiento}]
+POST   | /equipamiento                  | YES   | admin |  Create one equipamiento        | `name`,`description`, `price` | {equipamiento}
+PUT    | /equipamiento/:equipamientoId  | YES   | profesor |  Update one equipamiento        | `name`,`description`, `price` | {message: 'equipamiento updated'}
+DELETE | /equipamiento/:equipamientoId  | YES   | admin | Delete one equipamiento         |                                                   | {message: 'equipamiento deleted'}
 
 ### Technologies Used
 * [NodeJS](https://nodejs.org/) This is a cross-platform runtime environment built on Chrome's V8 JavaScript engine used in running JavaScript codes on the server. It allows for installation and managing of dependencies and communication with databases.
