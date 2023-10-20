@@ -129,10 +129,11 @@ METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAM
 GET    | /profesor          | YES   | admin | Get All profesors       |  `query params`                                 | [{profesor}]
 GET    | /profesor/:profesorId    | YES   | admin | Get One profesor       |                                 | {profesor}
 GET    | /profesor/profile    | YES   | profesor | Get Own Profile          |                                                 |  {profesor}
-GET    | /profesor/asignatura   | YES   | profesor  | Get Own asignatura        |                               | {asignatura}
-GET    | /profesor/curso   | YES   | profesor  | Get Own curso        |                               | {curso}
+GET    | /profesor/asignatura   | YES   | profesor  | Get Own asignaturas        |                               | [{asignatura}]
+GET    | /profesor/curso   | YES   | profesor  | Get Own cursos        |                               | [{curso}]
 POST   | /profesor     | YES   | admin |  Create one profesor     | `first_name`, `last_name`, `email`, `password`, `DNI` ,`role` | {profesor}
 PUT    | /profesor/profile   | YES   | profesor |  Update own profesor     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'profesor updated'}
+PUT    | /profesor/:profesorId   | YES   | admin |  Update profesor  | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'profesor updated'}
 DELETE | /profesor/:profesorId    | YES   | admin | Delete own profile       |                                                    | { message: 'Profile deleted' }
 
 ### Alumno Endpoints 
@@ -142,9 +143,9 @@ METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAM
 GET    | /alumno          | YES   | admin | Get All alumnos       |  `query params`                                 | [{alumno}]
 GET    | /alumno/:alumnoId    | YES   | profesor | Get One alumno       |                                 | {alumno}
 GET    | /alumno/profile    | YES   | alumno | Get Own Profile          |                                                 |  {alumno}
-GET    | /alumno/test   | YES   | alumno   | Get own tests        |                                                 |  {test}
-GET    | /alumno/asignatura    | YES   | profesor  | Get Own asignatura        |                               | {asignatura}
-GET    | /alumno/curso    | YES   | profesor  | Get Own asignatura        |                               | {asignatura}
+GET    | /alumno/tests   | YES   | alumno   | Get own tests        |                                                 |  [{test}]
+GET    | /alumno/asignatura    | YES   | profesor  | Get Own asignaturas        |                               | [{asignatura}]
+GET    | /alumno/curso    | YES   | profesor  | Get Own cursos        |                               | [{asignatura}]
 GET    | /alumno/test | YES   | alumno   | Get available tests  |                                                |  {test}
 POST   | /alumno     | YES   | admin |  Create one alumno     | `first_name`, `last_name`, `email`, `password`, `DNI` ,`role` | {alumno}
 PUT    | /alumno/profile   | YES   | alumno |  Update own alumno     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'alumno updated'}
@@ -176,9 +177,9 @@ DELETE | /curso/:cursoId       | YES   | admin     | Delete one curso     |     
 
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
 -------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
-GET    | /test            | YES   | profesor | Get All tests        |  `query params`                                 | [{test}]
-GET    | /test/:testId    | YES   | profesor | Get One tests        |                                   | {test}
-GET    | /test/available  | YES   | alumno   | Get available tests  |                                                |  {test}
+GET    | /test            | YES   | admin| Get All tests        |  `query params`                                 | [{test}]
+GET    | /test/:testId    | YES   | admin | Get One test        |                                   | {test}
+GET    | /test/available  | YES   | alumno   | Get available tests  |                                                |  [{test}]
 POST   | /test            | YES   | profesor | Create one test      | `test_date`, `test_time`, `description`, `duration`, `status` | {test}
 PUT    | /test/available  | YES   | alumno   | Update own test      |   `status`   | {message: 'test updated'}
 PUT    | /test/:testId    | YES   | profesor | Update one test      | `test_date`, `test_time`, `description`, `duration`, `status`| {message: 'test updated'}
