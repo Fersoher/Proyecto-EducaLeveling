@@ -78,13 +78,12 @@ METHOD | ENDPOINT            | TOKEN | ROLE     | DESCRIPTION              | POS
 GET    | /alumno             | YES   | admin    | Get All alumnos          |  `query params`                                 | [{alumno}]
 GET    | /alumno/:alumnoId   | YES   | empleado | Get One alumno           |                                                 | {alumno}
 GET    | /alumno/profile     | YES   | alumno   | Get Own Profile          |                                                 | {alumno}
-GET    | /alumno/tests       | YES   | alumno   | Get own tests            |                                                 | [{test}]
+GET    | /alumno/tests       | YES   | alumno   | Get Own tests            |                                                 | [{test}]
 GET    | /alumno/asignatura  | YES   | empleado | Get Own asignaturas      |                                                 | [{asignatura}]
 GET    | /alumno/curso       | YES   | empleado | Get Own cursos           |                                                 | [{asignatura}]
-GET    | /alumno/test        | YES   | alumno   | Get available tests      |                                                 | [{test}]
-POST   | /alumno             | YES   | admin    | Create one alumno        | `first_name`, `last_name`, `email`, `password`  | {alumno}
-PUT    | /alumno/profile     | YES   | alumno   | Update own alumno        | `first_name`, `last_name`, `email`, `password`  | {message: 'alumno updated'}
-PUT    | /alumno/:alumnoId   | YES   | admin    | Update own alumno        | `first_name`, `last_name`, `email`, `password`  | {message: 'alumno updated'}
+POST   | /alumno             | YES   | admin    | Create one alumno        | `nombre`, `apellidos`, `email`, `contraseña`  | {alumno}
+PUT    | /alumno/profile     | YES   | alumno   | Update own alumno        | `nombre`, `apellidos`, `email`, `contraseña`  | {message: 'alumno updated'}
+PUT    | /alumno/:alumnoId   | YES   | admin    | Update own alumno        | `nombre`, `apellidos`, `email`, `contraseña`  | {message: 'alumno updated'}
 DELETE | /alumno/:alumnoId   | YES   | admin    | Delete own profile       |                                                 | { message: 'Profile deleted' }
 
 ### Asignaturas Endpoints
