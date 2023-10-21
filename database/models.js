@@ -1,4 +1,4 @@
-const Alumno = require('../models/alumno.model')
+const Alumno = require('../models/alumnos.model.js')
 const XXXXXXXXXX = require('../api/models/ /*XXXXXXXXXX*/ .model') // añadir tabla a relacionar
 
 function setRelations(){

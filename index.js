@@ -1,5 +1,5 @@
-const { checkDB, syncModels } = require('./database/index.js')
-const { setRelations } = require('./database/models.js')
+const { checkDB, syncModels } = require('./database/index')
+const { setRelations } = require('./database/models')
 const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
