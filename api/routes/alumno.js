@@ -17,8 +17,8 @@ router.get('/alumno/tests', getOwnTests)
 router.get('/alumno/asignatura', getOwnAsignaturas)
 router.get('/alumnos/curso', getOwnCursos)
 router.post('/alumno', createAlumno)
-router.put('/alumno/profile', updateAlumno)
-router.put('/alumno/:alumnoId', updateOwnAlumno)
+router.put('/alumno/profile', updateOwnAlumno)
+router.put('/alumno/:alumnoId', updateAlumno)
 router.delete('/alumno/:alumnoId', deleteAlumno)
 
 module.exports = router
