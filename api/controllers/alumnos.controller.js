@@ -47,7 +47,7 @@ async function getOwnProfile(req, res) {
 		})
 
 		if (alumno) {
-			const message = `Hi ${alumno.first_name}!, this is your profile and the clinic history of your pets.`
+			const message = `Hi ${alumno.first_name}!, this is your profile`
 
 			return res.status(200).json({ message, alumno })
 		} else {
@@ -134,7 +134,7 @@ async function createAlumno(req, res) {
 
 		const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '24h' })
 
-		if (alumno.role === "personnel") {
+		if (alumno.role === "personnel") { // ojo
 			const vetInfo = await Vet.create(req.body)
 			await vetInfo.setAlumno(alumno)
 
