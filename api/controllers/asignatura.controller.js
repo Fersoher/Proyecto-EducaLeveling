@@ -1,6 +1,6 @@
 const Asignatura = require('../models/asignatura.model')
 const jwt = require('jsonwebtoken')
-
+const bcrypt = require('bcrypt')
 async function getAllAsignaturas(req, res) {
 	try {
 		const asignatura = await Asignatura.findAll({

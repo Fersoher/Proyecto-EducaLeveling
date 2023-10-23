@@ -1,6 +1,6 @@
 const Equipamiento = require('../models/equipamiento.model')
 const jwt = require('jsonwebtoken')
-
+const bcrypt = require('bcrypt')
 async function getAllEquipamiento(req, res) {
 	try {
 		const equipamiento = await Equipamiento.findAll({
