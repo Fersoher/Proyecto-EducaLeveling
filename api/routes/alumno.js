@@ -11,15 +11,15 @@ const { getAllAlumnos,
 	updateOwnAlumno,
 	deleteAlumno } = require('../controllers/alumnos.controller.js')
 
-router.get('/alumno', getAllAlumnos)
-router.get('/alumno/:id', getOneAlumno)
-router.get('/alumno/profile', getOwnProfile)
-router.get('/alumno/tests', getOwnTests)
-router.get('/alumno/asignatura', getOwnAsignaturas)
-router.get('/alumnos/curso', getOwnCursos)
-router.post('/alumno', createAlumno)
-router.put('/alumno/profile', updateOwnAlumno)
-router.put('/alumno/:alumnoId', updateAlumno)
-router.delete('/alumno/:alumnoId', deleteAlumno)
+router.get('/', getAllAlumnos)
+router.get('/:id', getOneAlumno)
+router.get('/profile', getOwnProfile)
+router.get('/tests', getOwnTests)
+router.get('/asignatura', getOwnAsignaturas)
+router.get('/curso', getOwnCursos)
+router.post('/', createAlumno)
+router.put('/profile', updateOwnAlumno)
+router.put('/:alumnoId', updateAlumno)
+router.delete('/:alumnoId', deleteAlumno)
 
 module.exports = router

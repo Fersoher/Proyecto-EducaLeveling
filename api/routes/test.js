@@ -1,11 +1,11 @@
 const router = require('express').Router()
 const { getAllTests, getOneTest, createTest, updateOwnTest, updateTest, deleteTest } = require('../controllers/test.controller')
 
-router.get('/test', getAllTests)
-router.get('/test/:testId', getOneTest)
-router.post('/test', createTest)
-router.put('/test/avaible', updateOwnTest)
-router.put('/test/:testId', updateTest)
-router.delete('/test/:testId', deleteTest)
+router.get('/', getAllTests)
+router.get('/:testId', getOneTest)
+router.post('/', createTest)
+router.put('/avaible', updateOwnTest)
+router.put('/:testId', updateTest)
+router.delete('/:testId', deleteTest)
 
 module.exports = router
