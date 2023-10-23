@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { getAllTests, getOneTest, createTest, GetAvaibleTests, updateAvaibleTests, updateTest, deleteTest } = require('../controllers/test')
+const { getAllTests, getOneTest, createTest, GetAvaibleTests, updateAvaibleTests, updateTest, deleteTest } = require('../controllers/test.controller')
 
 router.get('/test', getAllTests)
 router.get('/test/:testId', getOneTest)

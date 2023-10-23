@@ -1,5 +1,4 @@
-const Curso = require('../models/curso.models')
-const bcrypt = require('bcrypt')
+//const Curso = require('../models/curso.models')
 const jwt = require('jsonwebtoken')
 
 async function getAllCursos(req, res) {

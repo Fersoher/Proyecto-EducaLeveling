@@ -1,5 +1,4 @@
-const Asignatura = require('../models/asignatura.models')
-const bcrypt = require('bcrypt')
+//const Asignatura = require('../models/asignatura.model')
 const jwt = require('jsonwebtoken')
 
 async function getAllAsignaturas(req, res) {

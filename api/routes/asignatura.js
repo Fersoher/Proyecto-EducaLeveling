@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { getAllAsignaturas, getOneAsignatura, createAsignatura, updateAsignatura, deleteAsignatura } = require('../controllers/asignatura')
+const { getAllAsignaturas, getOneAsignatura, createAsignatura, updateAsignatura, deleteAsignatura } = require('../controllers/asignatura.controller')
 
 router.get('/asignatura', getAllAsignaturas)
 router.get('/asignatura/:asignaturaId', getOneAsignatura)

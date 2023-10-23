@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { getAllCursos, getOneCurso, createCurso, updateCurso, deleteCurso } = require('../controllers/curso')
+const { getAllCursos, getOneCurso, createCurso, updateCurso, deleteCurso } = require('../controllers/curso.controller')
 
 router.get('/curso', getAllCursos)
 router.get('/curso/:cursoId', getOneCurso)

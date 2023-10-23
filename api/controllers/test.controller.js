@@ -1,5 +1,4 @@
-const Alumno = require('../models/test.models')
-const bcrypt = require('bcrypt')
+//const Test = require('../models/test.model')
 const jwt = require('jsonwebtoken')
 
 async function getAllTests(req, res) {

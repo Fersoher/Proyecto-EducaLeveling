@@ -8,7 +8,7 @@ const { getAllEmpleados,
 	createEmpleado,
 	updateEmpleado,
 	updateOwnEmpleado,
-	deleteEmpleado } = require('../controllers/empleado')
+	deleteEmpleado } = require('../controllers/empleados.controller.js')
 
 router.get('/empleado', getAllEmpleados)
 router.get('/empleado/:empleadoId', getOneEmpleado)
