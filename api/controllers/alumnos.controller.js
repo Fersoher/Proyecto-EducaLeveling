@@ -41,7 +41,7 @@ async function getOwnProfile(req, res) {
 	try {
 		const alumno = await Alumno.findOne({
 			where: {
-				id: res.params.alumno.id
+				id: req.locals.testId
 			},
 			attributes: ['id','first_name', 'last_name','dni','email'],
 		})
@@ -122,40 +122,14 @@ async function getOwnCursos(req, res) {
 
 async function createAlumno(req, res) {
 	try {
-		const payload = { email: req.body.email }
-		const salt = bcrypt.genSaltSync(parseInt(10))
+		
+		const salt = bcrypt.genSaltSync(parseInt(process.env.SALTROUNDS))
 		const encrypted = bcrypt.hashSync(req.body.contraseña, salt)
 		req.body.contraseña = encrypted
 
-		const alumno = await Alumno.create(req.body, {
-			attributes: { exclude: ['contraseña'] }
-		})
-
-
-		const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '24h' })
-
-		if (alumno.role === "personnel") { // ojo
-			const vetInfo = await Vet.create(req.body)
-			await vetInfo.setAlumno(alumno)
-
-			return res.status(200).json({
-				message: 'Vet created',
-				alumno: alumno,
-				vetInfo: vetInfo,
-				token: token
-			})
-
-		} else if (alumno.role === "alumno") {
-			const contactInfo = await ContactInfo.create(req.body)
-			await contactInfo.setAlumno(alumno)
-
-			return res.status(200).json({
-				message: 'Alumno created',
-				alumno: alumno,
-				info: contactInfo,
-				token: token
-			})
-		}
+		const alumno = await Alumno.create(req.body)
+		return res.status(200).send(alumno)
+		
 	} catch (error) {
 		res.status(500).send(error.message)
 	}

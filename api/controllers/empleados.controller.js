@@ -1,6 +1,7 @@
 const Empleado = require('../models/empleados.model')
-const bcrypt = require('bcrypt')
+
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
 
 async function getAllEmpleados(req, res) {
 	try {

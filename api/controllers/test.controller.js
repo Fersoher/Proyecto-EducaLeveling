@@ -1,7 +1,6 @@
 const Test = require('../models/test.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-
 async function getAllTests(req, res) {
 	try {
 		const test = await Test.findAll({
