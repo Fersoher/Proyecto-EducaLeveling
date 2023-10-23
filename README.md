@@ -114,9 +114,8 @@ METHOD | ENDPOINT         | TOKEN | ROLE     | DESCRIPTION          | POST PARAM
 -------|------------------|-------|------    |----------------------|------------------------------------------------------------------------------|--------------------
 GET    | /test            | YES   | admin    | Get All tests        |  `query params`                                                              | [{test}]
 GET    | /test/:testId    | YES   | admin    | Get One test         |                                                                              | {test}
-GET    | /test/available  | YES   | alumno   | Get available tests  |                                                                              | [{test}]
 POST   | /test            | YES   | empleado | Create one test      | `alumno`, `profesor`, `asignatura`, `actividad`, `nota individual`,  `fecha` | {test}
-PUT    | /test/available  | YES   | alumno   | Update own test      | `status`                                                                     | {message: 'test updated'}
+PUT    | /test/profile    | YES   | alumno   | Update own test      | `status`                                                                     | {message: 'test updated'}
 PUT    | /test/:testId    | YES   | empleado | Update one test      | `alumno`, `profesor`, `asignatura`, `actividad`, `nota individual`,  `fecha` | {message: 'test updated'}
 DELETE | /test/:testId    | YES   | empleado | Delete one test      |                                                                              | {message: 'test deleted'}
 

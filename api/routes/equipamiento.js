@@ -1,7 +1,7 @@
 const router = require('express').Router()
-const { getAllEquipamientos, getOneEquipamiento, createEquipamiento, updateEquipamiento, deleteEquipamiento } = require('../controllers/curso.controller.js')
+const { getAllEquipamiento, getOneEquipamiento, createEquipamiento, updateEquipamiento, deleteEquipamiento } = require('../controllers/equipamiento.controller.js')
 
-router.get('/equipamiento', getAllEquipamientos)
+router.get('/equipamiento', getAllEquipamiento)
 router.get('/equipamiento/:equipamientoId', getOneEquipamiento)
 router.post('/equipamiento', createEquipamiento)
 router.put('/equipamiento/:equipamientoId', updateEquipamiento)

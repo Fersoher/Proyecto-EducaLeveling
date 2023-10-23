@@ -1,4 +1,4 @@
-//const Curso = require('../models/curso.model')
+const Curso = require('../models/curso.model')
 const jwt = require('jsonwebtoken')
 
 async function getAllCursos(req, res) {
