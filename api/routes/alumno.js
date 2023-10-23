@@ -9,7 +9,7 @@ const { getAllAlumnos,
 	createAlumno,
 	updateAlumno,
 	updateOwnAlumno,
-	deleteAlumno } = require('../controllers/alumnos.controller')
+	deleteAlumno } = require('../controllers/alumnos.controller.js')
 
 router.get('/alumno', getAllAlumnos)
 router.get('/alumno/:id', getOneAlumno)
