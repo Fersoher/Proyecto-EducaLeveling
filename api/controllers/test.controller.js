@@ -1,4 +1,4 @@
-//const Test = require('../models/test.model')
+const Test = require('../models/test.model')
 const jwt = require('jsonwebtoken')
 
 async function getAllTests(req, res) {
@@ -54,7 +54,7 @@ async function createTest(req, res) {
 	}
 }
 
-async function updateTest(req, res) {
+async function updateOwnTest(req, res) {
 	try {
 		const [testExist, test] = await Test.update(req.body, {
 			returning: true,
@@ -112,5 +112,6 @@ module.exports = {
 	getOneTest,
 	createTest,
     updateTest,
+	updateOwnTest,
     deleteTest
 }

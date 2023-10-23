@@ -23,7 +23,7 @@ function setRelations(){
         Test.belongsTo(Empleado)
 
         Asignatura.belongsToMany(Curso, { through: 'asignaturacurso' })
-        Curso.belongsToMany(Curso, { through: 'asignaturacurso' })
+        Curso.belongsToMany(Asignatura, { through: 'asignaturacurso' })
 
         Asignatura.hasMany(Test)
         Test.belongsTo(Asignatura)
