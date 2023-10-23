@@ -41,7 +41,7 @@ async function getOwnProfile(req, res) {
 	try {
 		const alumno = await Alumno.findOne({
 			where: {
-				id: req.locals.testId
+				id: res.locals.alumno.id
 			},
 			attributes: ['id','first_name', 'last_name','dni','email'],
 		})

@@ -42,7 +42,7 @@ async function getOwnProfile(req, res) {////probar con login
 	try {
 		const empleado = await Empleado.findOne({
 			where: {
-				id: res.params.empleado.id
+				id: res.locals.empleado.id
 			},
 			attributes: ['id', `nombre`, `apellidos`, `email`, `telefono`],
 		})
