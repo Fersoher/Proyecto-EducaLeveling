@@ -1,5 +1,7 @@
 const router = require('express').Router()
+const { checkAuth } = require("../middlewares/auth");
 
+router.use('/auth', require('./auth.router'))
 
 router.use('/empleado', require('./empleado'))
 router.use('/alumno', require('./alumno'))
