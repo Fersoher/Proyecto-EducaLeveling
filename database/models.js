@@ -16,14 +16,14 @@ function setRelations(){
         Alumno.hasMany(Test)
         Test.belongsTo(Alumno)
         
-        Empleado.belongsToMany(Asignatura, { through: 'asignaturaempleado' })
-        Asignatura.belongsToMany(Empleado, { through: 'asignaturaempleado' })
+        Empleado.belongsToMany(Asignatura, { through: 'asignaturaempleado', timestamps: false })
+        Asignatura.belongsToMany(Empleado, { through: 'asignaturaempleado', timestamps: false })
 
         Empleado.hasMany(Test)
         Test.belongsTo(Empleado)
 
-        Asignatura.belongsToMany(Curso, { through: 'asignaturacurso' })
-        Curso.belongsToMany(Asignatura, { through: 'asignaturacurso' })
+        Asignatura.belongsToMany(Curso, { through: 'asignaturacurso', timestamps: false })
+        Curso.belongsToMany(Asignatura, { through: 'asignaturacurso', timestamps: false })
 
         Asignatura.hasMany(Test)
         Test.belongsTo(Asignatura)
