@@ -1,4 +1,5 @@
 const router = require('express').Router()
+
 const { getAllAlumnos,
 	getOwnProfile,
 	getOwnTests,
@@ -8,7 +9,7 @@ const { getAllAlumnos,
 	createAlumno,
 	updateAlumno,
 	updateOwnAlumno,
-	deleteAlumno } = require('../controllers/alumnos')
+	deleteAlumno } = require('../controllers/alumnos.controller')
 
 router.get('/alumno', getAllAlumnos)
 router.get('/alumno/:id', getOneAlumno)

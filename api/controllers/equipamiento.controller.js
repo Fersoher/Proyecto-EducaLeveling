@@ -1,5 +1,4 @@
 const Alumno = require('../models/equipamiento.models')
-const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 async function getAllEquipamiento(req, res) {
