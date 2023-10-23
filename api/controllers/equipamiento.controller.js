@@ -1,4 +1,4 @@
-const Alumno = require('../models/equipamiento.models')
+//const Equipamiento = require('../models/equipamiento.model')
 const jwt = require('jsonwebtoken')
 
 async function getAllEquipamiento(req, res) {
