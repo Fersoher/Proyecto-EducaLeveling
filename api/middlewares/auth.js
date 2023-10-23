@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken')
-const Alumno = require('../models/alumnos.models')
+const Alumno = require('../models/alumnos.model')
 const Empleado = require('../models/empleados.model')
 require('dotenv').config()
 
-const checkAuth = async (req, res, next) => {
+const checkAlumno = async (req, res, next) => {
     if (!req.headers.authorization) {
         return res.status(401).send('Token not found')
     }
@@ -15,14 +15,14 @@ const checkAuth = async (req, res, next) => {
                 return res.status(401).send('Token not valid')
             }
 
-            const user = await Alumno.findOne({
+            const alumno = await Alumno.findOne({
                 where: {
                     email: payload.email
                 }
             })
 
             if (!alumno) {
-                return res.status(404).send('User not found')
+                return res.status(404).send('Alumno not found')
             }
 
             res.locals.alumno = alumno
@@ -30,21 +30,34 @@ const checkAuth = async (req, res, next) => {
         })
 }
 
-const Empleado = (req, res, next) => {
-    if (res.locals.user.role !== 'emplreado') {
-        return res.status(401).send('User not authorized')
+const checkEmpleado = (req, res, next) => {
+    if (!req.headers.authorization) {
+        return res.status(401).send('Token not found')
     }
-    next()
-}
 
-const  CheckEmpleado = (req, res, next) => {
-    if (res.locals.user.role === 'user') {
-        return res.status(401).send('User not authorized' )
-    }
-    next()
+    jwt.verify(req.headers.authorization, process.env.SECRET,
+        async (error, payload) => {
+            if (error) {
+                console.log(error.message)
+                return res.status(401).send('Token not valid')
+            }
+
+            const empleado = await Empleado.findOne({
+                where: {
+                    email: payload.email
+                }
+            })
+
+            if (!empleado) {
+                return res.status(404).send('Empleado not found')
+            }
+
+            res.locals.empleado = empleado
+            next()
+        })
 }
 
 module.exports = {
-    checkAuth,
+    checkAlumno,
     checkEmpleado,
 }
