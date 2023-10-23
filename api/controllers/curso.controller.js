@@ -1,6 +1,6 @@
 const Curso = require('../models/curso.model')
 const jwt = require('jsonwebtoken')
-
+const bcrypt = require('bcrypt')
 async function getAllCursos(req, res) {
 	try {
 		const curso = await Curso.findAll({

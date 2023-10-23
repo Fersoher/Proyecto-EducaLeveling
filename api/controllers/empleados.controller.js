@@ -1,4 +1,5 @@
 const Empleado = require('../models/empleados.model')
+const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 async function getAllEmpleados(req, res) {
@@ -36,7 +37,7 @@ async function getOneEmpleado(req, res) {
 	}
 }
 
-async function getOwnProfile(req, res) {
+async function getOwnProfile(req, res) {////probar con login
 	try {
 		const empleado = await Empleado.findOne({
 			where: {
@@ -121,41 +122,16 @@ async function getOwnTests(req, res) {
 
 async function createEmpleado(req, res) {
 	try {
-		const payload = { email: req.body.email }
-		const salt = bcrypt.genSaltSync(parseInt(10))
+	
+		const salt = bcrypt.genSaltSync(parseInt(process.env.SALTROUNDS))
 		const encrypted = bcrypt.hashSync(req.body.contraseña, salt)
 		req.body.contraseña = encrypted
 
-		const empleado = await Empleado.create(req.body, {
-			attributes: { exclude: ['contraseña'] }
-		})
-
-
-		const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '24h' })
-
-		if (empleado.role === "personnel") {
-			const vetInfo = await Vet.create(req.body)
-			await vetInfo.setEmpleado(empleado)
-
-			return res.status(200).json({
-				message: 'Vet created',
-				empleado: empleado,
-				vetInfo: vetInfo,
-				token: token
-			})
-
-		} else if (empleado.role === "empleado") {
-			const contactInfo = await ContactInfo.create(req.body)
-			await contactInfo.setEmpleado(empleado)
-
-			return res.status(200).json({
-				message: 'Empleado created',
-				empleado: empleado,
-				info: contactInfo,
-				token: token
-			})
+		const empleado = await Empleado.create(req.body)
+		return res.status(200).send(empleado)
+		
 		}
-	} catch (error) {
+	 catch (error) {
 		res.status(500).send(error.message)
 	}
 }

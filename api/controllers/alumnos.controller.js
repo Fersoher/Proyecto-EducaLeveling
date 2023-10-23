@@ -1,5 +1,6 @@
 const Alumno = require('../models/alumnos.model.js')
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
 
 async function getAllAlumnos(req, res) {
 	try {
