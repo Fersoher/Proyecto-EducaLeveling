@@ -1,5 +1,6 @@
 const Alumno = require('../models/alumnos.model.js')
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
 
 async function getAllAlumnos(req, res) {
 	try {
@@ -126,8 +127,8 @@ async function createAlumno(req, res) {
 		const encrypted = bcrypt.hashSync(req.body.contraseña, salt)
 		req.body.contraseña = encrypted
 
-		
-
+		const alumno = await Alumno.create(req.body)
+		return res.status(200).send(alumno)
 		
 	} catch (error) {
 		res.status(500).send(error.message)
