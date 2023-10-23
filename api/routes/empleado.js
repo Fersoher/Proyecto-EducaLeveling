@@ -10,15 +10,15 @@ const { getAllEmpleados,
 	updateOwnEmpleado,
 	deleteEmpleado } = require('../controllers/empleados.controller.js')
 
-router.get('/empleado', getAllEmpleados)
-router.get('/empleado/:empleadoId', getOneEmpleado)
-router.get('/empleado/profile', getOwnProfile)
-router.get('/empleado/tests', getOwnTests)
-router.get('/empleado/asignatura', getOwnAsignaturas)
-router.get('/empleado/curso', getOwnCursos)
-router.post('/empleado', createEmpleado)
-router.put('/empleado/profile', updateOwnEmpleado)
-router.put('/empleado/:empleadoId', updateEmpleado)
-router.delete('/empleado/:empleadoId', deleteEmpleado)
+router.get('/', getAllEmpleados)
+router.get('/:empleadoId', getOneEmpleado)
+router.get('/profile', getOwnProfile)
+router.get('/tests', getOwnTests)
+router.get('/asignatura', getOwnAsignaturas)
+router.get('/curso', getOwnCursos)
+router.post('/', createEmpleado)
+router.put('/profile', updateOwnEmpleado)
+router.put('/:empleadoId', updateEmpleado)
+router.delete('/:empleadoId', deleteEmpleado)
 
 module.exports = router
