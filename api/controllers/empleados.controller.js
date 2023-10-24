@@ -2,6 +2,9 @@ const Empleado = require('../models/empleados.model')
 
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+const Asignatura = require('../models/asignatura.model')
+const Curso = require('../models/curso.model')
+const Test = require('../models/test.model')
 
 async function getAllEmpleados(req, res) {
 	try {
@@ -38,14 +41,10 @@ async function getOneEmpleado(req, res) {
 	}
 }
 
-async function getOwnProfile(req, res) {////probar con login
+async function getOwnProfile(req, res) {
 	try {
-		const empleado = await Empleado.findOne({
-			where: {
-				id: res.locals.empleado.id
-			},
-			attributes: ['id', `nombre`, `apellidos`, `email`, `telefono`],
-		})
+		const empleado = await Empleado.findByPk(res.locals.empleado.id)
+
 
 		if (empleado) {
 			const message = `Hi ${empleado.nombre}!, this is your profile.`
@@ -61,17 +60,15 @@ async function getOwnProfile(req, res) {////probar con login
 
 async function getOwnAsignaturas(req, res) {
 	try {
-		const empleado = await Empleado.asignatura.findAll({
-			where: {
-				id: res.params.empleado.id
-			},
-			attributes: [`asignatura`],
+		const empleado = await Empleado.findByPk(res.locals.empleado.id, {
+			include: Asignatura
 		})
 
-		if (empleado) {
-			const message = `Hi ${empleado.first_name}!, those are your asignaturas.`
 
-			return res.status(200).json({ message, empleado })
+		if (empleado) {
+			const message = `Hi ${empleado.nombre}!, those are your asignaturas.`
+
+			return res.status(200).json({message: message, asignatura: empleado.asignaturas})
 		} else {
 			return res.status(404).send('Asignaturas not found')
 		}
@@ -81,17 +78,17 @@ async function getOwnAsignaturas(req, res) {
 }
 async function getOwnCursos(req, res) {
 	try {
-		const empleado = await Empleado.curso.findAll({
-			where: {
-				id: res.params.empleado.id
-			},
-			attributes: [`curso`, `empleado`],
+		const empleado = await Empleado.findByPk(res.locals.empleado.id,{
+			include: {
+				model: Asignatura,
+					include: Curso
+				}
+				
 		})
-
 		if (empleado) {
-			const message = `Hi ${empleado.first_name}!, those are your cursos.`
+			const message = `Hi ${empleado.nombre}!, those are your cursos.`
 
-			return res.status(200).json({ message, empleado })
+			return res.status(200).json({ message: message, asignatura: empleado.asignaturas })
 		} else {
 			return res.status(404).send('Cursos not found')
 		}
@@ -102,17 +99,14 @@ async function getOwnCursos(req, res) {
 
 async function getOwnTests(req, res) {
 	try {
-		const empleado = await Empleado.test.findAll({
-			where: {
-				id: res.params.empleado.id
-			},
-			attributes: [`empleado`, `profesor`, `asignatura`, `actividad`, `nota individual`, `fecha`],
+		const empleado = await Empleado.findByPk(res.locals.empleado.id,{
+			include: Test
 		})
 
 		if (empleado) {
-			const message = `Hi ${empleado.first_name}!, those are your tests.`
+			const message = `Hi ${empleado.nombre}!, those are your tests.`
 
-			return res.status(200).json({ message, empleado })
+			return res.status(200).json({ message: message, test: empleado.tests})
 		} else {
 			return res.status(404).send('Test not found')
 		}

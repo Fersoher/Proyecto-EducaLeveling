@@ -1,6 +1,10 @@
 const Alumno = require('../models/alumnos.model.js')
+const Test = require('../models/test.model.js')
+const Asignatura = require('../models/asignatura.model.js')
+const Curso = require('../models/curso.model.js')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+
 
 async function getAllAlumnos(req, res) {
 	try {
@@ -39,15 +43,10 @@ async function getOneAlumno(req, res) {
 
 async function getOwnProfile(req, res) {
 	try {
-		const alumno = await Alumno.findOne({
-			where: {
-				id: res.locals.alumno.id
-			},
-			attributes: ['id','first_name', 'last_name','dni','email'],
-		})
+		const alumno = await Alumno.findByPk(res.locals.alumno.id)
 
 		if (alumno) {
-			const message = `Hi ${alumno.first_name}!, this is your profile`
+			const message = `Hi ${alumno.nombre}!, this is your profile`
 
 			return res.status(200).json({ message, alumno })
 		} else {
@@ -60,17 +59,14 @@ async function getOwnProfile(req, res) {
 
 async function getOwnTests(req, res) {
 	try {
-		const alumno = await Alumno.test.findAll({
-			where: {
-				id: res.params.alumno.id
-			},
-			attributes: [`alumno`, `profesor`, `asignatura`, `actividad`, `nota individual`, `fecha`],
+		const alumno = await Alumno.findByPk(res.locals.alumno.id, {
+			include: Test
 		})
 
 		if (alumno) {
-			const message = `Hi ${alumno.first_name}!, those are your tests.`
+			const message = `Hi ${alumno.nombre}!, those are your tests.`
 
-			return res.status(200).json({ message, alumno })
+			return res.status(200).json({ message: message, test: alumno.tests })
 		} else {
 			return res.status(404).send('Test not found')
 		}
@@ -81,17 +77,17 @@ async function getOwnTests(req, res) {
 
 async function getOwnAsignaturas(req, res) {
 	try {
-		const alumno = await Alumno.asignatura.findAll({
-			where: {
-				id: res.params.alumno.id
-			},
-			attributes: [`asignatura`],
+		const alumno = await Alumno.findByPk(res.locals.alumno.id, {
+			include: {
+				model: Curso,
+				include: Asignatura
+			}
 		})
 
 		if (alumno) {
-			const message = `Hi ${alumno.first_name}!, those are your asignaturas.`
+			const message = `Hi ${alumno.nombre}!, those are your asignaturas.`
 
-			return res.status(200).json({ message, alumno })
+			return res.status(200).json({ message: message, asignatura: alumno.curso })
 		} else {
 			return res.status(404).send('Asignaturas not found')
 		}
@@ -101,17 +97,14 @@ async function getOwnAsignaturas(req, res) {
 }
 async function getOwnCursos(req, res) {
 	try {
-		const alumno = await Alumno.curso.findAll({
-			where: {
-				id: res.params.alumno.id
-			},
-			attributes: [`curso`, `alumno`],
+		const alumno = await Alumno.findByPk(res.locals.alumno.id, {
+			include: Curso
 		})
 
 		if (alumno) {
-			const message = `Hi ${alumno.first_name}!, those are your cursos.`
+			const message = `Hi ${alumno.nombre}!, those are your cursos.`
 
-			return res.status(200).json({ message, alumno })
+			return res.status(200).json({ message: message, asignatura: alumno.curso })
 		} else {
 			return res.status(404).send('Cursos not found')
 		}
@@ -122,14 +115,14 @@ async function getOwnCursos(req, res) {
 
 async function createAlumno(req, res) {
 	try {
-		
+
 		const salt = bcrypt.genSaltSync(parseInt(process.env.SALTROUNDS))
 		const encrypted = bcrypt.hashSync(req.body.contraseña, salt)
 		req.body.contraseña = encrypted
 
 		const alumno = await Alumno.create(req.body)
 		return res.status(200).send(alumno)
-		
+
 	} catch (error) {
 		res.status(500).send(error.message)
 	}
@@ -192,8 +185,8 @@ module.exports = {
 	getAllAlumnos,
 	getOwnProfile,
 	getOwnTests,
-    getOwnAsignaturas,
-    getOwnCursos,
+	getOwnAsignaturas,
+	getOwnCursos,
 	getOneAlumno,
 	createAlumno,
 	updateAlumno,
