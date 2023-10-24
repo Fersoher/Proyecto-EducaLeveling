@@ -26,7 +26,7 @@ async function getAllEmpleados(req, res) {
 
 async function getOneEmpleado(req, res) {
 	try {
-		const empleado = await Empleado.findByPk(req.params.empleadoId, {
+		const empleado = await Empleado.findByPk(req.params.id, {
 			attributes: {
 				exclude: ['contraseña']
 			}
@@ -153,7 +153,7 @@ async function updateEmpleado(req, res) {
 		const [empleadoExist, empleado] = await Empleado.update(req.body, {
 			returning: true,
 			where: {
-				id: req.params.empleadoId,
+				id: req.params.id,
 			},
 		})
 		if (empleadoExist !== 0) {
@@ -170,7 +170,7 @@ async function deleteEmpleado(req, res) {
 	try {
 		const empleado = await Empleado.destroy({
 			where: {
-				id: req.params.empleadoId,
+				id: req.params.id,
 			},
 		})
 		if (empleado) {

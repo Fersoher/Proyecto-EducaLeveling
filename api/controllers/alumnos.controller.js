@@ -151,7 +151,7 @@ async function updateAlumno(req, res) {
 		const [alumnoExist, alumno] = await Alumno.update(req.body, {
 			returning: true,
 			where: {
-				id: req.params.alumnoId,
+				id: req.params.id,
 			},
 		})
 		if (alumnoExist !== 0) {
