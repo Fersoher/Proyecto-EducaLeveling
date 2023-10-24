@@ -59,7 +59,7 @@ const checkEmpleado = (req, res, next) => {
 
 
 function checkIfEmpleado(req, res, next) {
-    if (!req.locals.empleado) {
+    if (!res.locals.empleado) {
         return res.status(401).send('User not authorized')  // Return error for any role different from 'admin'
     } else {
         next()  // If the user has 'admin' role, we let him access the following function in the route.
@@ -67,7 +67,7 @@ function checkIfEmpleado(req, res, next) {
 }
 
 function checkAdmin(req, res, next) {
-    if (req.locals.empleado.role !== 'admin') {
+    if (res.locals.empleado.role !== 'admin') {
         return res.status(401).send('User not authorized')  // Return error for any role different from 'admin'
     } else {
         next()  // If the user has 'admin' role, we let him access the following function in the route.

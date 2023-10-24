@@ -11,7 +11,7 @@ const { getAllEmpleados,
 	updateOwnEmpleado,
 	deleteEmpleado } = require('../controllers/empleados.controller.js')
 
-router.get('/', checkAdmin, getAllEmpleados)
+router.get('/', checkEmpleado, checkAdmin, getAllEmpleados)
 router.get('/profile', checkEmpleado, getOwnProfile)
 router.get('/tests', checkEmpleado, getOwnTests)
 router.get('/asignatura', checkEmpleado, getOwnAsignaturas)
