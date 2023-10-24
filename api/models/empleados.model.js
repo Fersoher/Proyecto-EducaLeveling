@@ -22,6 +22,11 @@ const Empleado = sequelize.define(
         telefono: {
             type: DataTypes.INTEGER,
             allowNull: false,
+        },
+        role: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "profesor"
         },   
         contraseña:{
             type: DataTypes.STRING,

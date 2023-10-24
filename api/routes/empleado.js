@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { checkEmpleado } = require('../middlewares/auth')
+const { checkEmpleado, checkAdmin } = require('../middlewares/auth')
 const { getAllEmpleados,
 	getOwnProfile,
 	getOwnTests,
@@ -11,15 +11,15 @@ const { getAllEmpleados,
 	updateOwnEmpleado,
 	deleteEmpleado } = require('../controllers/empleados.controller.js')
 
-router.get('/', checkEmpleado, getAllEmpleados)
+router.get('/', checkAdmin, getAllEmpleados)
 router.get('/profile', checkEmpleado, getOwnProfile)
 router.get('/tests', checkEmpleado, getOwnTests)
 router.get('/asignatura', checkEmpleado, getOwnAsignaturas)
 router.get('/curso', checkEmpleado, getOwnCursos)
 router.get('/:empleadoId', checkEmpleado, getOneEmpleado)
-router.post('/', createEmpleado)
+router.post('/', checkAdmin, createEmpleado)
 router.put('/profile', checkEmpleado, updateOwnEmpleado)
-router.put('/:empleadoId', checkEmpleado, updateEmpleado)
-router.delete('/:empleadoId', deleteEmpleado)
+router.put('/:empleadoId', checkAdmin, updateEmpleado)
+router.delete('/:empleadoId', checkAdmin, deleteEmpleado)
 
 module.exports = router
