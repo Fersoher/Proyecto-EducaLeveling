@@ -10,8 +10,8 @@ function setRelations(){
         Alumno.hasOne(Equipamiento)
         Equipamiento.belongsTo(Alumno)
 
-        Alumno.hasOne(Curso)
-        Curso.belongsTo(Alumno)
+        Curso.hasMany(Alumno)
+        Alumno.belongsTo(Curso)
 
         Alumno.hasMany(Test)
         Test.belongsTo(Alumno)

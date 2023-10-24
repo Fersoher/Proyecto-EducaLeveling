@@ -3,7 +3,7 @@ const Alumno = require('../models/alumnos.model')
 const Empleado = require('../models/empleados.model')
 require('dotenv').config()
 
-const checkAlumno = async (req, res, next) => {
+const checkAlumno = async (req, res, next) => { //checkauth (vemos si estamos logeados)
     if (!req.headers.authorization) {
         return res.status(401).send('Token not found')
     }
