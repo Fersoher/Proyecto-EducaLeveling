@@ -22,7 +22,7 @@ async function getAllAlumnos(req, res) {
 
 async function getOneAlumno(req, res) {
 	try {
-		const alumno = await Alumno.findByPk(req.params.alumnoId, {
+		const alumno = await Alumno.findByPk(req.params.id, {
 			attributes: {
 				exclude: ['contraseña']
 			}
