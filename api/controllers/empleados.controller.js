@@ -43,7 +43,7 @@ async function getOneEmpleado(req, res) {
 
 async function getOwnProfile(req, res) {
 	try {
-		const empleado = await Empleado.findByPk(res.locals.empleado.id)
+		const empleado = await Empleado.findByPk(res.locals.user.id)
 
 
 		if (empleado) {
@@ -60,7 +60,7 @@ async function getOwnProfile(req, res) {
 
 async function getOwnAsignaturas(req, res) {
 	try {
-		const empleado = await Empleado.findByPk(res.locals.empleado.id, {
+		const empleado = await Empleado.findByPk(res.locals.user.id, {
 			include: Asignatura
 		})
 
@@ -78,7 +78,7 @@ async function getOwnAsignaturas(req, res) {
 }
 async function getOwnCursos(req, res) {
 	try {
-		const empleado = await Empleado.findByPk(res.locals.empleado.id,{
+		const empleado = await Empleado.findByPk(res.locals.user.id,{
 			include: {
 				model: Asignatura,
 					include: Curso
@@ -99,7 +99,7 @@ async function getOwnCursos(req, res) {
 
 async function getOwnTests(req, res) {
 	try {
-		const empleado = await Empleado.findByPk(res.locals.empleado.id,{
+		const empleado = await Empleado.findByPk(res.locals.user.id,{
 			include: Test
 		})
 
@@ -134,7 +134,7 @@ async function updateOwnEmpleado(req, res) {
 	try {
 		const empleado = await Empleado.update(req.body, {
 			where: {
-				id: res.locals.empleado.id,
+				id: res.locals.user.id,
 			}
 		})
 		if (empleado) {

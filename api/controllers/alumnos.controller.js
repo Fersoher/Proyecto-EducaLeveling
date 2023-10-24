@@ -43,7 +43,7 @@ async function getOneAlumno(req, res) {
 
 async function getOwnProfile(req, res) {
 	try {
-		const alumno = await Alumno.findByPk(res.locals.alumno.id)
+		const alumno = await Alumno.findByPk(res.locals.user.id)
 
 		if (alumno) {
 			const message = `Hi ${alumno.nombre}!, this is your profile`
@@ -59,7 +59,7 @@ async function getOwnProfile(req, res) {
 
 async function getOwnTests(req, res) {
 	try {
-		const alumno = await Alumno.findByPk(res.locals.alumno.id, {
+		const alumno = await Alumno.findByPk(res.locals.user.id, {
 			include: Test
 		})
 
@@ -77,7 +77,7 @@ async function getOwnTests(req, res) {
 
 async function getOwnAsignaturas(req, res) {
 	try {
-		const alumno = await Alumno.findByPk(res.locals.alumno.id, {
+		const alumno = await Alumno.findByPk(res.locals.user.id, {
 			include: {
 				model: Curso,
 				include: Asignatura
@@ -97,7 +97,7 @@ async function getOwnAsignaturas(req, res) {
 }
 async function getOwnCursos(req, res) {
 	try {
-		const alumno = await Alumno.findByPk(res.locals.alumno.id, {
+		const alumno = await Alumno.findByPk(res.locals.user.id, {
 			include: Curso
 		})
 
