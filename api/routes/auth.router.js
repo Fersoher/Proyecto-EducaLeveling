@@ -5,16 +5,16 @@ const { signUpAlumno, loginAlumno, signUpEmpleado, loginEmpleado } = require('..
 
 
 // Usuarios crea
-router.post('/signup', signUpAlumno);
+router.post('/signupalumno', signUpAlumno);
 
 // Inicio de sesión
-router.post('/login', loginAlumno);
+router.post('/loginalumno', loginAlumno);
 
 // Usuarios crea
-router.post('/signup', signUpEmpleado);
+router.post('/signupempleado', signUpEmpleado);
 
 // Inicio de sesión
-router.post('/login', loginEmpleado);
+router.post('/loginempleado', loginEmpleado);
 
 // Cambio de contra
 //router.post('/change-password', authenticateToken, changePassword);

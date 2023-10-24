@@ -33,7 +33,7 @@ const loginAlumno = async (req, res) => {
         })
 
         if (!alumno) {
-            return res.status(404).json({ message: 'Error: Wrong Email or Password' })
+            return res.status(404).json({ message: 'Error: Wrong Email or Password Alumno' })
         }
 
         const comparePassword = bcrypt.compareSync(req.body.contraseña, alumno.contraseña)
@@ -45,7 +45,7 @@ const loginAlumno = async (req, res) => {
         } else {
             return res
                 .status(404)
-                .json({ message: "Error: Wrong Email or Password" });
+                .json({ message: "Error: Wrong Email or Password Alumno" });
         }
     } catch (error) {
         return res.status(500).json({ message: error.message });
@@ -54,17 +54,15 @@ const loginAlumno = async (req, res) => {
 
 const signUpEmpleado = async (req, res) => {
     try {
-        if (req.body.password.length < 8) {
-            return res.status(400).json({ message: 'Password too short' })
-        }
+
         const payload = { email: req.body.email }
-        const salt = bcrypt.genSaltSync(parseInt(10))
-        const encrypted = bcrypt.hashSync(req.body.password, salt)
-        req.body.password = encrypted
+        const salt = bcrypt.genSaltSync(parseInt(process.env.SALTROUNDS))
+        const encrypted = bcrypt.hashSync(req.body.contraseña, salt)
+        req.body.contraseña = encrypted
 
         const empleado = await Empleado.create(req.body)
-
         const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '1h' })
+        return res.status(200).json({ token })
 
     } catch (error) {
         return res.status(500).json({ message: error.message })
