@@ -39,8 +39,8 @@ const loginAlumno = async (req, res) => {
         const comparePassword = bcrypt.compareSync(req.body.contraseña, alumno.contraseña)
         if (comparePassword) {
             const payload = { email: alumno.email }
-            const token = jwt.sign(payload, 'secret', { expiresIn: '1h' })
-            // `Alumno: ${alumno.first_name} logged-in `
+            const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '1h' })
+            // `empleado: ${empleado.first_name} logged-in `
             return res.status(200).json({ token })
         } else {
             return res
@@ -84,7 +84,7 @@ const loginEmpleado = async (req, res) => {
         const comparePassword = bcrypt.compareSync(req.body.contraseña, empleado.contraseña)
         if (comparePassword) {
             const payload = { email: empleado.email }
-            const token = jwt.sign(payload, 'secret', { expiresIn: '1h' })
+            const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '1h' })
             // `empleado: ${empleado.first_name} logged-in `
             return res.status(200).json({ token })
         } else {
