@@ -10,26 +10,11 @@ router.post('/signup', signUpAlumno);
 // Inicio de sesión
 router.post('/login', loginAlumno);
 
-// Cierra sesión
-//router.post('/logout', authenticateToken, logout);
-
-// Reset de contra
-//router.post('/reset-password', resetPassword);
-
-// Cambio de contra
-//router.post('/change-password', authenticateToken, changePassword);
-
 // Usuarios crea
-router.post('/signup', signUpEmpleado, loginEmpleado);
+router.post('/signup', signUpEmpleado);
 
 // Inicio de sesión
-//router.post('/login', login);
-
-// Cierra sesión
-//router.post('/logout', authenticateToken, logout);
-
-// Reset de contra
-//router.post('/reset-password', resetPassword);
+router.post('/login', loginEmpleado);
 
 // Cambio de contra
 //router.post('/change-password', authenticateToken, changePassword);
