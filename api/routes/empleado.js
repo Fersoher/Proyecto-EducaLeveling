@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const { checkEmpleado } = require('../middlewares/auth')
 const { getAllEmpleados,
 	getOwnProfile,
 	getOwnTests,
@@ -12,7 +13,7 @@ const { getAllEmpleados,
 
 router.get('/', getAllEmpleados)
 router.get('/:empleadoId', getOneEmpleado)
-router.get('/profile', getOwnProfile)
+router.get('/profile', checkEmpleado, getOwnProfile)
 router.get('/tests', getOwnTests)
 router.get('/asignatura', getOwnAsignaturas)
 router.get('/curso', getOwnCursos)

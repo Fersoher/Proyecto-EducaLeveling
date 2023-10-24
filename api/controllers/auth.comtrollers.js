@@ -8,17 +8,15 @@ require('dotenv').config()
 
 const signUpAlumno = async (req, res) => {
     try {
-        if (req.body.password.length < 8) {
-            return res.status(400).json({ message: 'Password too short' })
-        }
+        
         const payload = { email: req.body.email }
-        const salt = bcrypt.genSaltSync(parseInt(10))
-        const encrypted = bcrypt.hashSync(req.body.password, salt)
-        req.body.password = encrypted
+        const salt = bcrypt.genSaltSync(parseInt(process.env.SALTROUNDS))
+        const encrypted = bcrypt.hashSync(req.body.contraseña, salt)
+        req.body.contraseña = encrypted
 
         const alumno = await Alumno.create(req.body)
-
         const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '1h' })
+        return res.status(200).json({ token })
 
     } catch (error) {
         return res.status(500).json({ message: error.message })
@@ -38,7 +36,7 @@ const loginAlumno = async (req, res) => {
             return res.status(404).json({ message: 'Error: Wrong Email or Password' })
         }
 
-        const comparePassword = bcrypt.compareSync(req.body.password, alumno.password)
+        const comparePassword = bcrypt.compareSync(req.body.contraseña, alumno.contraseña)
         if (comparePassword) {
             const payload = { email: alumno.email }
             const token = jwt.sign(payload, 'secret', { expiresIn: '1h' })
@@ -85,7 +83,7 @@ const loginEmpleado = async (req, res) => {
             return res.status(404).json({ message: 'Error: Wrong Email or Password' })
         }
 
-        const comparePassword = bcrypt.compareSync(req.body.password, empleado.password)
+        const comparePassword = bcrypt.compareSync(req.body.contraseña, empleado.contraseña)
         if (comparePassword) {
             const payload = { email: empleado.email }
             const token = jwt.sign(payload, 'secret', { expiresIn: '1h' })
