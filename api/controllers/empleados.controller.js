@@ -123,7 +123,6 @@ async function getOwnTests(req, res) {
 
 async function createEmpleado(req, res) {
 	try {
-	
 		const salt = bcrypt.genSaltSync(parseInt(process.env.SALTROUNDS))
 		const encrypted = bcrypt.hashSync(req.body.contraseña, salt)
 		req.body.contraseña = encrypted
