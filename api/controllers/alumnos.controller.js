@@ -103,7 +103,7 @@ async function getOwnCursos(req, res) {
 
 		if (alumno) {
 			const message = `Hi ${alumno.nombre}!, those are your cursos.`
-
+console.log(alumno)
 			return res.status(200).json({ message: message, asignatura: alumno.curso })
 		} else {
 			return res.status(404).send('Cursos not found')
