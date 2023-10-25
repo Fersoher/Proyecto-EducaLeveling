@@ -15,9 +15,6 @@ const Equipamiento = sequelize.define(
         FechaDevolucion: {
             type: DataTypes.DATE,
             unique: true,
-            validate: {
-                isEmail: true,
-            }
         }
     },
     { timestamps: false }
