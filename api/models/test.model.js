@@ -11,13 +11,8 @@ const Test = sequelize.define(
         nota: {
             type: DataTypes.INTEGER,
             allowNull: false,
-        },
-        fecha: {
-            type: DataTypes.DATE,
-            allowNull: false,
         }
-    },
-    { timestamps: false }
+    }
 )
 
 module.exports = Test
