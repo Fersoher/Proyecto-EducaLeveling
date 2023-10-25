@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "We created a project guided towards the creation of a database aimed at helping educational centers with respect to planning the school year and student learning, facilitating access to lessons and activities.",
   "main": "index.js",
+  "engines": {
+  "node": ">=18.18.0"
+},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
