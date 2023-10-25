@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { checkEmpleado, checkAdmin } = require('../middlewares/auth')
+const { checkEmpleado, checkAdmin, checkUser } = require('../middlewares/auth')
 const { getAllEmpleados,
 	getOwnProfile,
 	getOwnTests,
@@ -11,15 +11,15 @@ const { getAllEmpleados,
 	updateOwnEmpleado,
 	deleteEmpleado } = require('../controllers/empleados.controller.js')
 
-router.get('/', checkEmpleado, checkAdmin, getAllEmpleados)
-router.get('/profile', checkEmpleado, getOwnProfile)
-router.get('/tests', checkEmpleado, getOwnTests)
-router.get('/asignatura', checkEmpleado, getOwnAsignaturas)
-router.get('/curso', checkEmpleado, getOwnCursos)
-router.get('/:empleadoId', checkEmpleado, getOneEmpleado)
-router.post('/', checkAdmin, createEmpleado)
-router.put('/profile', checkEmpleado, updateOwnEmpleado)
-router.put('/:empleadoId', checkAdmin, updateEmpleado)
-router.delete('/:empleadoId', checkAdmin, deleteEmpleado)
+router.get('/', checkUser, checkAdmin, getAllEmpleados)
+router.get('/profile', checkUser, checkEmpleado, getOwnProfile)
+router.get('/tests', checkUser, checkEmpleado, getOwnTests)
+router.get('/asignatura', checkUser, checkEmpleado, getOwnAsignaturas)
+router.get('/curso', checkUser, checkEmpleado, getOwnCursos)
+router.get('/:id', checkUser, checkEmpleado, getOneEmpleado)
+router.post('/', checkUser, checkEmpleado, createEmpleado)
+router.put('/profile', checkUser, checkEmpleado, updateOwnEmpleado)
+router.put('/:id', checkUser, checkAdmin, updateEmpleado)
+router.delete('/:id', checkUser, checkAdmin, deleteEmpleado)
 
 module.exports = router
