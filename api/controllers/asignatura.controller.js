@@ -38,17 +38,8 @@ async function getOneAsignatura(req, res) {
 
 async function createAsignatura(req, res) {
 	try {
-		const payload = { email: req.body.email }
-		const salt = bcrypt.genSaltSync(parseInt(10))
-		const encrypted = bcrypt.hashSync(req.body.contraseña, salt)
-		req.body.contraseña = encrypted
-
-		const alumno = await Asignatura.create(req.body, {
-			attributes: { exclude: ['contraseña'] }
-		})
-
-		const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '24h' })
-		
+		const asignatura = await Asignatura.create(req.body)
+		return res.status(200).json({ message: 'Asignatura creada', asignatura: asignatura })
 	} catch (error) {
 		res.status(500).send(error.message)
 	}

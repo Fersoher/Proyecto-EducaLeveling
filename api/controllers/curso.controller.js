@@ -39,16 +39,9 @@ async function getOneCurso(req, res) {
 
 async function createCurso(req, res) {
 	try {
-		const payload = { email: req.body.email }
-		const salt = bcrypt.genSaltSync(parseInt(10))
-		const encrypted = bcrypt.hashSync(req.body.contraseña, salt)
-		req.body.contraseña = encrypted
-
-		const alumno = await Curso.create(req.body, {
-			attributes: { exclude: ['contraseña'] }
-		})
-
-		const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '24h' })
+		
+		const curso = await Curso.create(req.body)
+		return res.status(200).json({ message: 'Curso creado', curso :curso})
 		
 	} catch (error) {
 		res.status(500).send(error.message)

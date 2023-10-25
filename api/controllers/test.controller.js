@@ -1,6 +1,8 @@
 const Test = require('../models/test.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+
+
 async function getAllTests(req, res) {
 	try {
 		const test = await Test.findAll({
@@ -38,17 +40,8 @@ async function getOneTest(req, res) {
 
 async function createTest(req, res) {
 	try {
-		const payload = { email: req.body.email }
-		const salt = bcrypt.genSaltSync(parseInt(10))
-		const encrypted = bcrypt.hashSync(req.body.contraseña, salt)
-		req.body.contraseña = encrypted
-
-		const alumno = await Test.create(req.body, {
-			attributes: { exclude: ['contraseña'] }
-		})
-
-		const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '24h' })
-		
+		const test = await Test.create(req.body)
+		return res.status(200).json({ message: 'Test creado', test: test })
 	} catch (error) {
 		res.status(500).send(error.message)
 	}
@@ -92,12 +85,12 @@ async function updateTest(req, res) {
 
 async function deleteTest(req, res) {
 	try {
-		const curso = await Curso.destroy({
+		const test = await Test.destroy({
 			where: {
-				id: req.params.cursoId,
+				id: req.params.id,
 			},
 		})
-		if (curso) {
+		if (test) {
 			return res.status(200).send('Test deleted')
 		} else {
 			return res.status(404).send('Test not found')
