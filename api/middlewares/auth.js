@@ -66,7 +66,7 @@ const checkUser = async (req, res, next) => { //checkauth (vemos si estamos loge
 
 function checkEmpleado(req, res, next) {
     if (!res.locals.user.role) {
-        return res.status(401).send('User not authorized')  // Return error for any role different from 'admin'
+        return res.status(401).send('Usuario no autorizado, Pepito, estudia melon!')  // Return error for any role different from 'admin'
     } else {
         next()  // If the user has 'admin' role, we let him access the following function in the route.
     }
@@ -74,7 +74,7 @@ function checkEmpleado(req, res, next) {
 
 function checkAdmin(req, res, next) {
     if (res.locals.user.role !== 'admin') {
-        return res.status(401).send('User not authorized')  // Return error for any role different from 'admin'
+        return res.status(401).send('Usuario no autorizado')  // Return error for any role different from 'admin'
     } else {
         next()  // If the user has 'admin' role, we let him access the following function in the route.
     }
